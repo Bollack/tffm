@@ -39,12 +39,12 @@ def batcher(X_, y_=None, batch_size=-1):
 
     batch_size = int(batch_size)
     
-    for i in range(0, n_samples, batch_size):
-        upper_bound = min(i + batch_size, n_samples)
+    for i in range(0, n_samples, int(batch_size)):
+        upper_bound = min(i + int(batch_size), n_samples)
         ret_x = X_[i:upper_bound]
         ret_y = None
         if y_ is not None:
-            ret_y = y_[i:i + batch_size]
+            ret_y = y_[i:i + int(batch_size)]
         yield (ret_x, ret_y)
 
 
