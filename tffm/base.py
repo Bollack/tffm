@@ -37,8 +37,6 @@ def batcher(X_, y_=None, batch_size=-1):
     if batch_size < 1:
        raise ValueError('Parameter batch_size={} is unsupported'.format(batch_size))
 
-    batch_size = int(batch_size)
-
     for i in range(0, n_samples, batch_size):
         upper_bound = min(i + batch_size, n_samples)
         ret_x = X_[i:upper_bound]
@@ -204,7 +202,7 @@ class TFFMBaseModel(six.with_metaclass(ABCMeta, BaseEstimator)):
         # For reproducible results
         if self.seed:
             np.random.seed(self.seed)
-        
+
         # Training cycle
         for epoch in tqdm(range(n_epochs), unit='epoch', disable=(not show_progress)):
             # generate permutation
